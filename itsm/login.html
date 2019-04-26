@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.css'>
+     <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+      <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+
+  <div id="particles-js" class="cont">
+  <div class="demo">
+    <div class="login">
+      <div class="logo">
+        <h1>ITSM</h1>
+      </div>
+      <div class="login__form">
+        <div class="login__row lang-select">
+<!--
+             <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+                <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+              </svg>
+-->
+          <div class="icon">
+            <i class="fas fa-language"></i>
+          </div>
+           <div class="box">
+            <label class="login__input default-value">English<span class="arrow"><i class="fas fa-angle-down"></i></span></label>
+            <label class="login__input selected-value"></label>
+            <div class="select-box" data-filter-group="type" style="display: none;">
+              <a href="" >English</a>
+                <a href="" >Korean</a>
+            </div>
+            </div>
+        </div>
+        <div class="login__row">
+<!--
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+-->
+        <div class="icon">
+          <i class="fas fa-user"></i>
+        </div>
+          <input type="text" class="login__input name" placeholder="ID"/>
+        </div>
+        <div class="login__row">
+<!--
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+-->
+        <div class="icon">
+          <i class="fas fa-lock"></i>
+        </div>
+          <input type="password" class="login__input pass" placeholder="Password"/>
+        </div>
+        <div class="">
+        <!-- <input id="admin" type="checkbox"><label for="admin"><span></span>관리자로 로그인</label> -->
+        <input id="pw" type="checkbox"><label for="pw"><span></span>Remember password</label>
+        </div>
+        <button type="button" class="login__submit" >LOGIN</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js'></script>
+<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js'></script> -->
+<!-- <script src='https://raw.githubusercontent.com/gf3/moment-range/master/lib/moment-range.js'></script> -->
+
+<script src='https://use.fontawesome.com/releases/v5.0.8/js/all.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script type="text/javascript" src="js/particles.min.js"></script>
+
+  <script  src="js/index.js"></script>
+  <script>
+  $(".login__submit").bind("click",function(){
+    // alert($(".name").val())
+    if($(".name").val()!="" && $(".pass").val() != ""){
+      if($(".name").val() != "admin"){
+        alert("User name is dosen't exist, please try again");
+        return false;
+      }
+      if($(".pass").val() != "admin"){
+        alert("passwoard is incorrect");
+        return false;
+      }
+      location.href='index.html';
+    } else {
+      alert("type user id and passowrd");
+      return false;
+    }
+  });
+  // particlejs
+/*
+  particlesJS.load('particles-js', 'js/particlesjs-config.json', function() {
+    console.log('callback - particles.js config loaded');
+  });
+
+/*/
+particlesJS('particles-js', {
+    'particles': {
+        'number': {
+            'value': 80,
+            'density': {
+                'enable': true,
+                'value_area': 800
+            }
+        },
+        'color': { 'value': '#ffffff' },
+        'shape': {
+            'type': 'circle',
+            'stroke': {
+                'width': 0,
+                'color': '#000000'
+            },
+            'polygon': { 'nb_sides': 5 },
+            'image': {
+                'src': 'img/github.svg',
+                'width': 100,
+                'height': 100
+            }
+        },
+        'opacity': {
+            'value': 0.5,
+            'random': false,
+            'anim': {
+                'enable': false,
+                'speed': 1,
+                'opacity_min': 0.1,
+                'sync': false
+            }
+        },
+        'size': {
+            'value': 3,
+            'random': true,
+            'anim': {
+                'enable': false,
+                'speed': 40,
+                'size_min': 0.1,
+                'sync': false
+            }
+        },
+        'line_linked': {
+            'enable': true,
+            'distance': 150,
+            'color': '#ffffff',
+            'opacity': 0.4,
+            'width': 1
+        },
+        'move': {
+            'enable': true,
+            'speed': 3,
+            'direction': 'none',
+            'random': false,
+            'straight': false,
+            'out_mode': 'out',
+            'bounce': false,
+            'attract': {
+                'enable': false,
+                'rotateX': 600,
+                'rotateY': 1200
+            }
+        }
+    },
+    'interactivity': {
+        'detect_on': 'canvas',
+        'events': {
+            'onhover': {
+                'enable': true,
+                'mode': 'grab'
+            },
+            'onclick': {
+                'enable': true,
+                'mode': 'push'
+            },
+            'resize': true
+        },
+        'modes': {
+            'grab': {
+                'distance': 140,
+                'line_linked': { 'opacity': 1 }
+            },
+            'bubble': {
+                'distance': 400,
+                'size': 40,
+                'duration': 2,
+                'opacity': 8,
+                'speed': 3
+            },
+            'repulse': {
+                'distance': 200,
+                'duration': 0.4
+            },
+            'push': { 'particles_nb': 4 },
+            'remove': { 'particles_nb': 2 }
+        }
+    },
+    'retina_detect': true
+});
+  </script>
+</body>
+
+</html>

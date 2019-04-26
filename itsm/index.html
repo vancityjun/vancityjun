@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard / Admin Panel</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.css'>
+
+<script type="text/javascript" src="js/amcharts.js"></script>
+<script type="text/javascript" src="js/pie.js"></script>
+<script type="text/javascript" src="js/serial.js"></script>
+<script type="text/javascript" src="js/themes/light.js"></script></head>
+      <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<body class="sidebar-is-reduced">
+  <header class="l-header">
+    <div class="l-header__inner clearfix">
+      <div class="c-header-icon js-hamburger">
+        <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+      </div>
+      <div class="c-header-icon has-dropdown">
+        <span class="c-badge c-badge--red c-badge--header-icon animated swing">13</span>
+        <i class="fa fa-bell"></i>
+        <div class="c-dropdown c-dropdown--notifications" style="display:none;">
+          <div class="c-dropdown__header">
+          </div>
+          <div class="c-dropdown__content">
+            <ul>
+              <li><a href="javascript:void(0)">You have recieved 13 messages</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="dropdown">
+          <ul>
+            <li><a href="javascript:void(0)">
+              you have received new messages
+            </a></li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="c-search">
+        <input class="c-search__input u-input" placeholder="Search..." type="text"/>
+      </div>
+      <div class="header-icons-group">
+        <!-- <div class="c-header-icon basket"><span class="c-badge c-badge--blue c-badge--header-icon animated swing">4</span><i class="fa fa-shopping-basket"></i></div> -->
+        <div class="c-header-icon logout"><a href="login.html"><i class="fa fa-power-off"></i></a></div>
+      </div>
+    </div>
+  </header>
+  <div class="l-sidebar">
+    <div class="logo">
+      <div class="logo__txt"><a href="javascript:void(0)">ITSM</a></div>
+    </div>
+    <div class="l-sidebar__content">
+      <nav class="c-menu js-menu">
+        <ul class="u-list">
+          <li class="c-menu__item is-active" data-toggle="tooltip" title="Dashboard">
+            <a href="#dashboard">
+              <div class="c-menu__item__inner"><i class="fa fa-chart-bar"></i>
+                <div class="c-menu-item__title"><span>Dashboard</span></div>
+              </div>
+            </a>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Calendar">
+            <a href="#event-calendar">
+              <div class="c-menu__item__inner"><i class="far fa-calendar-alt"></i>
+                <div class="c-menu-item__title"><span>Calendar</span></div>
+                <!-- <div class="c-menu-item__expand js-expand-submenu"><i class="fa fa-angle-down"></i></div> -->
+              </div>
+            </a>
+            <!-- <ul class="c-menu__submenu u-list">
+              <li>Payments</li>
+              <li>Maps</li>
+              <li>Notifications</li>
+            </ul> -->
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Tickets">
+            <a href="#ticket">
+              <div class="c-menu__item__inner"><i class="fas fa-ticket-alt" aria-hidden="true"></i>
+                <div class="c-menu-item__title"><span>Tickets</span></div>
+              </div>
+            </a>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Solution">
+            <a href="#solution">
+              <div class="c-menu__item__inner"><i class="fa fa-cubes"></i>
+                <div class="c-menu-item__title"><span>Solution</span></div>
+              </div>
+            </a>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Reports">
+            <a href="#report">
+              <div class="c-menu__item__inner"><i class="fa fa-flag"></i>
+                <div class="c-menu-item__title"><span>Reports</span></div>
+              </div>
+            </a>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Settings">
+            <a href="#settings">
+              <div class="c-menu__item__inner"><i class="fa fa-cogs"></i>
+                <div class="c-menu-item__title"><span>Settings</span></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</body>
+<main id="dashboard" class="l-main">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Dashboard</h1>
+    <div class="partition side left">
+      <div class="page-content top">
+        <div class="content-title">
+          <h2>Tickets by status</h2>
+        </div>
+        <div id="chartdiv01" class="chartdiv"></div>
+      </div>
+      <div class="page-content bottom">
+        <div class="content-title">
+          <h2>Tickets by Request Type</h2>
+        </div>
+        <div id="chartdiv02" class="chartdiv"></div>
+      </div>
+    </div>
+    <div class="partition center">
+      <div class="page-content top">
+        <div class="content-title">
+          <h2>Tickets by Tech Group</h2>
+        </div>
+        <div id="chartdiv03" class="chartdiv"></div>
+      </div>
+      <div class="page-content bottom">
+        <div class="content-title">
+          <h2>Tickets by Activity</h2>
+        </div>
+        <div class="activity">
+          <div class="lists">
+            <span class="title">system</span>
+          </div>
+          <p class="desc">Attempt to send Approval E-Mail faled</p>
+        </div>
+      </div>
+    </div>
+    <div class="partition side right">
+      <div class="page-content top">
+        <div class="content-title">
+          <h2>Tickets by Alert Level</h2>
+        </div>
+        <div id="chartdiv04" class="chartdiv"></div>
+      </div>
+      <div class="page-content middle">
+        <div class="content-title">
+          <h2>Tickets by alert Condition</h2>
+        </div>
+        <div id="chartdiv05" class="chartdiv"></div>
+      </div>
+      <div class="page-content bottom">
+        <div class="content-title">
+          <h2>Tickets by Priority</h2>
+        </div>
+        <div id="chartdiv06" class="chartdiv"></div>
+      </div>
+    </div>
+  </div>
+</main>
+<main id="event-calendar" class="l-main">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Calendar</h1>
+    <div class="page-content">
+        <div id="calendar"></div>
+    </div>
+  </div>
+</main>
+<main id="solution" class="l-main">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Solution</h1>
+    <div class="page-content">
+      <div class="top clearfix">
+        <div class="buttons fr">
+          <a class="btn btn-primary" href="javascript:void(0)">New solution category</a>
+          <a class="btn btn-default" href="javascript:void(0)">Recorder</a>
+        </div>
+      </div>
+      <input type="text" placeholder="Search All Solutions">
+      <div class="clearfix">
+        <div class="half">
+          <div class="top clearfix">
+            <div class="title fl">General</div>
+            <div class="buttons fr">
+              <a href="javascript:void(0)" class="btn btn-default">Add folder</a>
+              <a href="javascript:void(0)" class="btn btn-default">Edit</a>
+            </div>
+          </div>
+          <div class="lists">
+            <ul>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> FAQ </a><span>(15)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Getting Started </a><span>(2)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Basics </a><span>(6)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Known Errors </a><span>(2)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Newwork </a><span>(2)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Internal KB </a><span>(7)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Printer Troubleshooting </a><span>(5)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="half">
+          <div class="top clearfix">
+            <div class="title fl">Mobile OS</div>
+            <div class="buttons fr">
+              <a href="javascript:void(0)" class="btn btn-default">Add folder</a>
+              <a href="javascript:void(0)" class="btn btn-default">Edit</a>
+            </div>
+          </div>
+          <div class="lists">
+            <ul>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Android </a><span>(1)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> ios </a><span>(1)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <div class="half">
+          <div class="top clearfix">
+            <div class="title fl">Miscellaneous</div>
+            <div class="buttons fr">
+              <a href="javascript:void(0)" class="btn btn-default">Add folder</a>
+              <a href="javascript:void(0)" class="btn btn-default">Edit</a>
+            </div>
+          </div>
+          <div class="lists">
+            <ul>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Basics </a><span>(1)</span>
+              </li>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> OS X Solutions </a><span>(1)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="half">
+          <div class="top clearfix">
+            <div class="title fl">Default Category</div>
+          </div>
+          <div class="lists">
+            <ul>
+              <li>
+                <i class="far fa-file-alt"></i><a href="javascript:void(0)" class="blue"> Drafts </a><span>(10)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<main id="settings" class="l-main">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Settings</h1>
+    <div class="page-content">
+      <div class="table">
+        <table>
+          <tr>
+            <th class="name">Name & Conditions</th>
+            <th class="status">Status</th>
+          </tr>
+          <tr>
+            <td>
+              <h4>C Level Priority</h4>
+              <p>Actions: Change priority to Critical - Reassign to adam Breakey</p>
+            </td>
+            <td>
+              <input class="tgl tgl-skewed" id="cb1" type="checkbox"/>
+              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb1"></label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4>Tag incomming requests from international sites</h4>
+              <p>Actions: Add tags: international</p>
+            </td>
+            <td>
+              <input class="tgl tgl-skewed" id="cb2" type="checkbox"/>
+              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb2"></label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4>Department</h4>
+              <p>Actions: Reassign to Melody</p>
+            </td>
+            <td>
+              <input class="tgl tgl-skewed" id="cb3" type="checkbox"/>
+              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb3"></label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4>Application Support</h4>
+              <p>In case of OUTAGE set priority to Critical</p>
+            </td>
+            <td>
+              <input class="tgl tgl-skewed" id="cb4" type="checkbox"/>
+              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb4"></label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4>C Level Priority</h4>
+              <p>Actions: Change priority to Critical - Reassign to adam Breakey</p>
+            </td>
+            <td>
+              <input class="tgl tgl-skewed" id="cb5" type="checkbox"/>
+              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb5"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+<main id="ticket" class="l-main bbs">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Tickets</h1>
+    <div class="page-content">
+      <div class="table">
+        <div class="top clearfix">
+          <select class="" name="">
+            <option value="">Requester/Group</option>
+          </select>
+          <select class="" name="">
+            <option value="">Team/Technician</option>
+          </select>
+          <select class="" name="">
+            <option value="">2selected</option>
+          </select>
+          <select class="" name="">
+            <option value="">Category</option>
+          </select>
+          <input type="text"><a href="javascript:void(0)" class="search fl"><i class="fas fa-search"></i></a>
+          <div class="right">
+            <a href="javascript:void(0)" class="btn btn-danger delete center"><i class="far fa-trash-alt"></i></a>
+            <a href="javascript:void(0)" class="btn btn-warning edit center"><i class="far fa-edit"></i></a>
+            <a href="javascript:void(0)" class="btn btn-primary new center"><i class="far fa-plus-square"></i></a>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th class="first"><input type="checkbox"></th>
+            <th class="summary">Summary</th>
+            <th class="users">Users</th>
+            <th class="status">Status</th>
+            <th class="dates">Dates</th>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">RQ-123:RequestingArcGIS for Desktop 10.3</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">David Silver</a></p>
+              <p>Technicaian: <span class="blue">Vishu Nayagam</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl assigned"><i class="fas fa-user"></i></div>
+                <span class="fl">Assigned</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">5 days ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">In-456:My Internet isn't working again!!</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Tina Fay</a></p>
+              <p>Technicaian: <span class="blue">Jun Katstuyama</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl in-progress"><i class="fas fa-check"></i></div>
+                <span class="fl">In Progress</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">8 hours ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">RQ-123:Requesting ArcGIS for Desktop 10.3</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Jack Grey</a></p>
+              <p>Technicaian: <span class="blue">Vishu Nayagam</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl assigned"><i class="fas fa-user"></i></div>
+                <span class="fl">Assigned</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">5 days ago</span></span>
+              <p>Due: <span class="red">Overdue days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">In-456:My Internet isn't working again!!</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Tina Fay</a></p>
+              <p>Technicaian: <span class="blue">Jun Katstuyama</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl new"><i class="far fa-calendar-plus"></i></div>
+                <span class="fl">New</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">8 hours ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">In-456:My Internet isn't working again!!</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Tina Fay</a></p>
+              <p>Technicaian: <span class="blue">Jun Katstuyama</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl in-progress"><i class="fas fa-check"></i></div>
+                <span class="fl">In Progress</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">8 hours ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">In-456:My Internet isn't working again!!</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Tina Fay</a></p>
+              <p>Technicaian: <span class="blue">Jun Katstuyama</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl in-progress"><i class="fas fa-check"></i></div>
+                <span class="fl">In Progress</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">8 hours ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">In-456:My Internet isn't working again!!</a></p>
+              <p class="dark-grey">
+                <a href="javascript:void(0)">Group</a> |
+                <a href="javascript:void(0)">Category</a> |
+                <a href="javascript:void(0)">Subcategory</a>
+              </p>
+            </td>
+            <td>
+              <p>From: <a class="blue" href="javascript:void(0)">Tina Fay</a></p>
+              <p>Technicaian: <span class="blue">Jun Katstuyama</span></p>
+            </td>
+            <td>
+              <div class="flex">
+                <div class="icon fl in-progress"><i class="fas fa-check"></i></div>
+                <span class="fl">In Progress</span>
+              </div>
+            </td>
+            <td>
+              <p>rasied: <span class="dark-grey">8 hours ago</span></span>
+              <p>Due: <span class="dark-grey">in 3 days</span></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer clearfix">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</main>
+<main id="report" class="l-main bbs">
+  <div class="content-wrapper content-wrapper--with-bg">
+    <h1 class="page-title">Report</h1>
+    <div class="page-content">
+      <div class="table">
+        <div class="top clearfix">
+          <select class="" name="">
+            <option value="">Report Group</option>
+          </select>
+          <select class="" name="">
+            <option value="">2selected</option>
+          </select>
+          <select class="" name="">
+            <option value="">Category</option>
+          </select>
+          <input type="text"><a href="javascript:void(0)" class="search fl"><i class="fas fa-search"></i></a>
+          <div class="right">
+            <a href="javascript:void(0)" class="btn btn-danger delete center"><i class="far fa-trash-alt"></i></a>
+            <a href="javascript:void(0)" class="btn btn-warning edit center"><i class="far fa-edit"></i></a>
+            <a href="javascript:void(0)" class="btn btn-primary new center"><i class="far fa-plus-square"></i></a>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th class="first"><input type="checkbox"></th>
+            <th class="summary">Report</th>
+            <th class="users">Report Type</th>
+            <th class="status">Report Group</th>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Alert Report By Problem Type</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Asset Count By Location Asset Type and Asset Status</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Asset Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Sample Reports</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Asset count by Location, Manufacturer and Asset Status</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Asset Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Sample Reports</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Asset count by Location, Model and Asset Status</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Assets checked out in a date range by Location</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Asset Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Assets with most Tickets for the last quarter</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Average opentime this month</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Average work time this month</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <p><a class="blue" href="javascript:void(0)">Billing report by location</a></p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling Report</p>
+            </td>
+            <td>
+              <p class="dark-grey">Biling</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer clearfix">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</main>
+<main id="chat">
+  <div class="top">
+    <span>Messages</span>
+    <span class="toggle"><i class="fas fa-chevron-down"></i></span>
+  </div>
+  <div class="room">
+    <div class="row">
+      <div class="customer clearfix">
+        <div class="text-balloon">
+          Hello, Thank you for your service :)
+        </div>
+        <span class="time">11:30AM</span>
+      </div>
+      <span class="name">Emily</span>
+    </div>
+    <div class="row">
+      <div class="me clearfix">
+        <div class="text-balloon">
+        Thank you
+        </div>
+      <span class="time">15:41PM</span>
+    </div>
+    </div>
+  </div>
+  <textarea name="txt" rows="1" cols="80" placeholder="Type messages"></textarea>
+</main>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js'></script>
+  <script src='https://raw.githubusercontent.com/gf3/moment-range/master/lib/moment-range.js'></script>
+
+<script src='https://use.fontawesome.com/releases/v5.0.8/js/all.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script  src="js/index.js"></script>
+    <script  src="js/charts.js"></script>
+
+</body>
+
+</html>
