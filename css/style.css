@@ -71,10 +71,7 @@ body {
     background: #111727;
     font-size: 4rem;
     padding: 0 5%;
-    color: #e8ebf1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; }
+    color: #e8ebf1; }
     .wrapper .menu .mobile {
       font-size: 18px;
       line-height: 1.2;
@@ -109,6 +106,25 @@ body {
           transform-origin: bottom left;
           transform: scaleX(1) translate(0, 50%);
           background-color: #e8ebf1; }
+    .wrapper .menu div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%; }
+    .wrapper .menu .menuWrapper {
+      float: left; }
+    .wrapper .menu .imageWrapper {
+      float: right;
+      width: 40%; }
+      .wrapper .menu .imageWrapper .preview {
+        width: 100%;
+        height: 80%;
+        background: url(../img/jun.png) no-repeat center center;
+        background-size: cover;
+        transition: .2; }
+      @media screen and (max-width: 576px) {
+        .wrapper .menu .imageWrapper {
+          display: none; } }
   .wrapper .top_bar {
     position: fixed;
     z-index: 1000;
@@ -175,7 +191,7 @@ body {
   width: 50px;
   z-index: 1110; }
   .toggle-menu span {
-    background-color: #fff;
+    background-color: #182338;
     content: "";
     display: block;
     height: 2px;
@@ -186,7 +202,7 @@ body {
     transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,  transform 0.2s linear;
     width: 26px; }
     .toggle-menu span:before, .toggle-menu span:after {
-      background-color: #fff;
+      background-color: #182338;
       content: "";
       display: block;
       height: 2px;
@@ -205,10 +221,12 @@ body {
       transition: top 0.2s ease-out, transform 0.2s 0.2s ease-out; }
     .toggle-menu.active span:before {
       top: 0;
-      transform: rotate3d(0, 0, 1, -45deg); }
+      transform: rotate3d(0, 0, 1, -45deg);
+      background: #fff; }
     .toggle-menu.active span:after {
       top: 0;
-      transform: rotate3d(0, 0, 1, 45deg); }
+      transform: rotate3d(0, 0, 1, 45deg);
+      background: #fff; }
 
 .blog-slider {
   position: relative;
@@ -232,7 +250,7 @@ body {
   .blog-slider .profile .project-header {
     background: url("../img/jun.png") no-repeat; }
   .blog-slider .project01 .project-header {
-    background: url("../img/furence.jpg") no-repeat; }
+    background: url("../img/furence.png") no-repeat; }
   .blog-slider .project02 .project-header {
     background: url("../img/renewal.png") no-repeat; }
   .blog-slider .project03 .project-header {
@@ -354,7 +372,8 @@ body {
     position: absolute;
     right: 0;
     z-index: 200;
-    background: #182338;
+    background: #fff;
+    border-left: transparent;
     transition: all 0.5s; }
     @media screen and (max-width: 576px) {
       .blog-slider__item .content_wrapper {
@@ -517,15 +536,17 @@ body {
       transition: all 0.4s; }
     .blog-slider__content .info {
       font-size: 20px;
-      color: #9ea7c5;
+      color: #333;
       margin-top: 100px; }
       .blog-slider__content .info p {
         margin: 5px 0; }
       @media screen and (max-width: 576px) {
         .blog-slider__content .info {
           display: none; } }
+      .blog-slider__content .info .sns {
+        font-size: 26px; }
   .blog-slider__code {
-    color: #9ea7c5;
+    color: #333;
     display: block;
     font-weight: 300;
     font-size: 20px; }
@@ -537,7 +558,7 @@ body {
   .blog-slider__title {
     font-family: "Playfair Display", serif;
     font-size: 8vw;
-    color: #e8ebf1;
+    color: #182338;
     margin-bottom: 20px;
     line-height: 1; }
     @media screen and (max-width: 576px) {
@@ -545,7 +566,7 @@ body {
         font-size: 76px;
         margin-bottom: 8px; } }
   .blog-slider__text {
-    color: #9ea7c5;
+    color: #333;
     margin-bottom: 30px;
     line-height: 1.5em;
     font-size: 24px;
@@ -564,17 +585,15 @@ body {
     /*    position: relative;
     top: 280px;
     left: auto;*/
-    font-size: 30px;
+    font-size: 29px;
     margin-right: -80px;
     position: absolute;
     bottom: 0;
     left: 0; }
     .blog-slider__button a {
-      color: #9ea7c5;
+      color: #182338;
       padding: 5px 20px;
       transition: .2s; }
-      .blog-slider__button a:hover {
-        color: #e8ebf1; }
     @media screen and (max-width: 576px) {
       .blog-slider__button {
         font-size: 20px;
@@ -670,7 +689,7 @@ body {
     text-transform: capitalize;
     transition: 0.5s;
     font-size: 18px;
-    color: #e8ebf1;
+    color: #182338;
     font-weight: 300;
     /*    &.blog-button-prev {
           &:before {

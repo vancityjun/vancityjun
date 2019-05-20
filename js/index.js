@@ -99,6 +99,8 @@ $(function() {
     $('.toggle-menu').removeClass('active');
     $('.menu').fadeOut(600);
     contentClose(400);
+    $(this).parents().siblings().find('.link').removeClass('active');
+    $(this).addClass('active');
   });
 
   $('.scrollDown').on('click', function(e) {
@@ -106,7 +108,6 @@ $(function() {
     $('.scroll').animate({
       scrollTop: $('.project-content').offset().top
     }, 500, 'linear');
-
   });
 });
 
