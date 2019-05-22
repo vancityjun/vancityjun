@@ -100,9 +100,9 @@ body {
         transform: scaleX(0) translate(0, 50%);
         transform-origin: bottom right;
         transition: transform 0.3s; }
-      .wrapper .menu .link:hover {
+      .wrapper .menu .link:hover, .wrapper .menu .link.active {
         color: #ec0f0f; }
-        .wrapper .menu .link:hover:after {
+        .wrapper .menu .link:hover:after, .wrapper .menu .link.active:after {
           transform-origin: bottom left;
           transform: scaleX(1) translate(0, 50%);
           background-color: #e8ebf1; }

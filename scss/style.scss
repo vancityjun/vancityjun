@@ -128,7 +128,7 @@ body {
         transform-origin: bottom right;
         transition: transform 0.3s;
       }
-      &:hover{
+      &:hover ,&.active{
         color: $primary-color;
         &:after {
           transform-origin: bottom left;
