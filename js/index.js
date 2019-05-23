@@ -103,7 +103,6 @@ $(function() {
     // $(this).addClass('active');
   });
 
-  // var backgrounds = [''];
   // var slides = $(".swiper-pagination-bullet");
   // var lists = $(".menuWrapper ul li");
 
@@ -114,12 +113,33 @@ $(function() {
     }, 500, 'linear');
   });
 });
+
+  var backgrounds = [
+  'jun',
+  'furence',
+  'renewal',
+  'itsm',
+  'shiba',
+  'recsee-video',
+  'award'
+  ];
  function menuActive(){
     var i = $(".swiper-pagination-bullet").index($(".swiper-pagination-bullet-active"));
+    $(".preview").css("background-image", "url('img/"+backgrounds[i]+".png')");
     $(".menuWrapper ul li:eq("+i+")").find(".link").addClass("active");
     $(".menuWrapper ul li:eq("+i+")").siblings().find(".link").removeClass("active");
   };
  
+$(".menuWrapper ul li").mouseenter(function(){
+  var i = $(".menuWrapper ul li").index(this);
+  $(".preview").css("background-image", "url('img/"+backgrounds[i]+".png')");
+});
+
+$(".menuWrapper ul li").mouseleave(function(){
+  var i = $(".swiper-pagination-bullet").index($(".swiper-pagination-bullet-active"));
+  $(".preview").css("background-image", "url('img/"+backgrounds[i]+".png')");
+});
+
 swiper.on("slideChange", function(){
   menuActive();
 });

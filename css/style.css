@@ -119,9 +119,10 @@ body {
       .wrapper .menu .imageWrapper .preview {
         width: 100%;
         height: 80%;
-        background: url(../img/jun.png) no-repeat center center;
+        background-repeat: no-repeat;
+        background-position: center;
         background-size: cover;
-        transition: .2; }
+        transition: .5s; }
       @media screen and (max-width: 576px) {
         .wrapper .menu .imageWrapper {
           display: none; } }
