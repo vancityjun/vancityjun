@@ -46,6 +46,7 @@ $(function() {
       $(".swiper-slide-active").find('.scrollDown').fadeIn(600);
     };
     $(".swiper-slide-active").find('.project-content').addClass('active');
+    $(".swiper-slide-active").find('.info-background').fadeIn('600');
     $(".blog-slider__pagination").fadeOut(400);
     $(".arrows").fadeOut(400);
     $('.swiper-wrapper').addClass("swiper-no-swiping");
@@ -62,6 +63,8 @@ $(function() {
     contentOpen();
   });
 
+    $(".swiper-slide").find('.info-background').css('display', 'none');
+
   function contentClose(fod) {
     $('.scroll').animate({
       scrollTop: 0
@@ -74,6 +77,7 @@ $(function() {
     $(".swiper-slide").find('.project-info').removeClass('active');
     $(".swiper-slide").find('.scrollDown').fadeOut(fod);
     $(".swiper-slide").find('.project-content').removeClass('active');
+    $(".swiper-slide").find('.info-background').fadeOut(fod);
     $(".blog-slider__pagination").fadeIn(fod);
     $(".arrows").fadeIn(fod);
     $('.swiper-wrapper').removeClass("swiper-no-swiping");
