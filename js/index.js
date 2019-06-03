@@ -89,26 +89,14 @@ $(function() {
     e.preventDefault();
     contentClose(400);
   });
-  /*
-  $(".swiper-pagination-bullet").mouseover(function(){
-    $(this).removeClass('swiper-pagination-bullet-active');
-  })
-  .mouseout(function(){
-    $(this).addClass('swiper-pagination-bullet-active');
-  });
-  */
 
   $('.menu a').click(function(e) {
     e.preventDefault();
     $('.toggle-menu').removeClass('active');
     $('.menu').fadeOut(600);
     contentClose(400);
-    // $(this).parents().siblings().find('.link').removeClass('active');
-    // $(this).addClass('active');
-  });
 
-  // var slides = $(".swiper-pagination-bullet");
-  // var lists = $(".menuWrapper ul li");
+  });
 
   $('.scrollDown').on('click', function(e) {
     e.preventDefault();
