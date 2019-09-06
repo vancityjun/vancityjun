@@ -6,7 +6,7 @@ var swiper = new Swiper('.blog-slider', {
   preventClicksPropagation: false,
   // hashNavigation:true,
   mousewheel: {
-    sensitivity: 1,
+    sensitivity: 3,
   },
   keyboard: {
     enabled: true,
